@@ -24,12 +24,12 @@ class ShiftCypher {
         let n = this._n * -1;
         str = str.toUpperCase();
         for (let x = 0; x < str.length; x++){
-            if (str.charCodeAt(x)+n <= 90 && str.charCodeAt(x)+n >= 65){
+            if (str.charCodeAt(x) <= 90 && str.charCodeAt(x) >= 65){// da ist das Problem..
                 if(str.charCodeAt(x) +n < 65){
                     let d = str.charCodeAt(x) +n -65;
                     console.log(str.charCodeAt(x));
                     console.log("if +n < 65",d);
-                    str = str.substring(0, x) + String.fromCharCode(90 - d) + str.substring(x +1);
+                    str = str.substring(0, x) + String.fromCharCode(91 + d) + str.substring(x +1);
                 } else {
                     str = str.substring(0, x) + String.fromCharCode(str.charCodeAt(x) +n)
                         + str.substring(x +1);
