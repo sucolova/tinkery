@@ -12,6 +12,13 @@ class Field {
     get fieldArray(){
         return this._fieldArray;
     }
+    static generateField(v,h){
+        let field = [];
+        for (let i = 0; i < v; i++){
+            field.push([]);
+            console.log(field);
+        }
+    }
     askDirection(){
         const ask = prompt("press hjklö for movement ");
         console.log(`you pressed ${ask} !`);
@@ -89,5 +96,4 @@ let testField = new Field([
     ['░', 'O', '░'],
     ['░', '^', '░'],
 ]);
-
-testField.startGame();
+Field.generateField(5,  6);
