@@ -1,10 +1,5 @@
 const prompt = require('prompt-sync')({sigint: true}); // create promt for user input; user can exit with ctrl c = true
 
-const hat = '^';
-const hole = 'O';
-const fieldCharacter = '░';
-const pathCharacter = '*';
-
 class Field {
     constructor(fieldArray){
         this._fieldArray = fieldArray;
@@ -15,17 +10,37 @@ class Field {
     static generateField(v,h){
         let field = [];
         let currentArray;
+        let asteriskPlaced = false;
+        let hatPlaced = false;
         for (let i = 0; i < v; i++){
             field.push([]);
-            console.log(field);
             currentArray = i;
             for (let i = 0; i < h; i++){
                 let r = Math.floor(Math.random()*100);
                 console.log(r);
-                if (r <= 10){
+                if (r <= 4 && asteriskPlaced === false ){
                     field[currentArray].push("*");
+                    asteriskPlaced = true;
+                }else if (r <= 2 && hatPlaced === false && currentArray > v/2 ){
+                    field[currentArray].push("^");
+                    hatPlaced = true;
+                } else if (r <= 80) {
+                    field[currentArray].push("░");
+                } else if (r <= 100) {
+                    field[currentArray].push("O");
+                } else {
+                    console.log("something went wrong");
                 }
+            console.log(field);
             }
+
+        }
+        if (asteriskPlaced === true && hatPlaced === true){
+        return field;
+        } else {
+            field[0][0] = "*";
+            field[v-1][h-1] = "^";
+            return field;
         }
     }
     askDirection(){
@@ -105,4 +120,8 @@ let testField = new Field([
     ['░', 'O', '░'],
     ['░', '^', '░'],
 ]);
-Field.generateField(5,  6);
+
+let myField = new Field(Field.generateField(15,  16));
+myField.startGame();
+
+
