@@ -14,9 +14,18 @@ class Field {
     }
     static generateField(v,h){
         let field = [];
+        let currentArray;
         for (let i = 0; i < v; i++){
             field.push([]);
             console.log(field);
+            currentArray = i;
+            for (let i = 0; i < h; i++){
+                let r = Math.floor(Math.random()*100);
+                console.log(r);
+                if (r <= 10){
+                    field[currentArray].push("*");
+                }
+            }
         }
     }
     askDirection(){
